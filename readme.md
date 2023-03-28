@@ -7,7 +7,7 @@ Forward rendering is earlier version of rendenring, and is more flexible because
 
 Forward rendering is most commonly used in shader because it provides the advantage of multiple passes. The majority of the shaders we made in class (I believe excluding the shadows) are forwardly rendered. I also believe that most things when made in shaders are forward rendered unless declared otherwise. 
 
-![Forward rendering image](fwd.png)
+![Forward rendering image](FWDR.png)
 
 Deferred rendering is an advanced lighting technique commonly used for things like shadows. It takes advantage of the render pipeline by combining everything into one last final step where lighting is calculated in screen space.
 This buffer is called the G-Buffer.
@@ -15,7 +15,7 @@ This buffer is called the G-Buffer.
 
 As mentioned earlier, deferred rendering is commonly used when making shadows, this is visible inside unity (Atleast HDRP pipelines) where you can see shadow casters as deferred renderers in the  Window->Analysis->HDRP (It's not called HDRP, it's something similar tab
 
-![Deferred rendering image](drd.png)
+![Deferred rendering image](DRDR.png)
 
 Both options of rendering are valuable and important. Commonly in CG we aim for our things to be on the differed render pipeline to optimize GPU operations, but some operations can only be done on the forward render. 
 
@@ -58,6 +58,9 @@ This kind of effect can be used to help provide contrast (Just like in the shark
 ![](C.png)
 ![](D.png)
 ![](SharkShadow.png)
+![](ShadowShader.png)
+
+Note: This diagram has two passes because in the next part I create a second pass to handle outlining.
 
 ## Game part 2 
 
@@ -99,6 +102,6 @@ Also, this can help / be used to provide the inside --> outside exposure effect
 
 Here's what the final thing looks like
 ![](ICGP2.gif)
-
+https://sketchfab.com/3d-models/low-poly-shark-58eddd6fbc2448c38efd1e3df3d0f342#download <-- Shark
 
 
