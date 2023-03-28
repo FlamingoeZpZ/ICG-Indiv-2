@@ -30,7 +30,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Amp: 0.4
+    - _Amp: 1
     - _Frequency: 16
     - _Speed: 54
     m_Colors:

@@ -19,7 +19,7 @@ As mentioned earlier, deferred rendering is commonly used when making shadows, t
 
 Both options of rendering are valuable and important. Commonly in CG we aim for our things to be on the differed render pipeline to optimize GPU operations, but some operations can only be done on the forward render. 
 
-## Game
+## Game Part 1 
 
 ![Part 1](ICGP1.gif)
 
@@ -36,6 +36,69 @@ Next, we need to implement our toon ramp && we need to apply our finial colors. 
 ![Fragment sorta](ToonRamp.png)
 
 
+## Explain the following code snippet:
+(I added comments)
+
+This code is a pixellate camera shader that essentially reduces the resolution of the screen into different chunks and then returns them with lower resolutions.
+This can be used in the shark game (Go figure) because it makes things pixelly. So I will be using it in the shark thing.
+This kind of effect can be used to emulate old school pixel games w/o actually making the textures pixelly
+![](A.png)
+![](B.png)
+![](Pixel.png)
+
+
+## Code snipper part 2 (Because it can be used in Game part 2, I'm doing it first.)
+
+This is a shadow coloration shader, it allows us to change the color of the shadows that are landing on the object with our material.
+I've attached this to the shark so it's easier to visualize NOTE how the shadow on it's underside (The shadow it casts onto itself) is colored, but the shadow it casts onto the plane below it is regular.
+Also note, that the toon ramp makes it A LOT harder to see shadows 
+This kind of effect can be used to help provide contrast (Just like in the shark)
+
+
+![](C.png)
+![](D.png)
+![](SharkShadow.png)
+
+## Game part 2 
+
+Okay so technically at this point, vertex extrusion is already happening in the water, and shadows are being handled by the shark...
+So to feel like I did something, let's implement bloom & Outlines.
+
+Speed run time
+
+Okay great, so here's what the game looks like now
+
+
+First I added an outline pass to the shark shadow shadow, then I connected that outline pass to my C# script and added some code that raycasts forward from the player position
+If we're seeing the layer w/ the shark on it, then the shark goes red. 
+![](E.png)
+![](F.png)
+
+Next I made a laser pointer to it's clear where the player is aiming and I applied emission to it so that the bloom affect I'd add next would look better.
+
+Then I added bloom to the project, this will highlight bright and glowing spaces, so if you look at the water, it'll have a slight glow where there are white spots and if you look at the laser, it's not pixellated like everthing else because bloom happens after pixels
+
+The bloom shader is enormous, so it's a copy paste 1to1 w/ variables changed from the lectures.
+
+Because I don't really know what to say about this besides for taking a dozen screenshots, let's talk about the variables that I manipulated
+![](G.png)
+
+There are 3 main parameters  that I'd want to change. First is iterations, this is how many times the screen is split into smaller bits (Just like in the pixellate code). However, this value also controls how much threshold and intensity is required for the effect to be noticable.
+Threshold is how bright an object should be before it starts "Blooming" or emitting light, If the iterations is higher, this should be higher too
+Finally is the Intensity, this is how much the brightness should be amplified and spread.
+
+
+Now all the magic happens in the kernels inside the bloom shader:
+![](H.png)
+
+In this image, "Sample Box" acts as a 2x2 kernel *(I believe) that given a position, it samples around that position and returns the new result (Giving us our blurred look)
+Additionally there is also the preFilter image, which is used to prevent the user from getting flashbanged as technically the image would stack upon itself. I.E. every single time it brightens the next frame, it'd get brighter and brighter until it was white. but with this function, it stays locked to it's range
+Also, this can help / be used to provide the inside --> outside exposure effect
+
+
+
+Here's what the final thing looks like
+![](ICGP2.gif)
 
 
 

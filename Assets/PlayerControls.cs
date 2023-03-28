@@ -10,6 +10,12 @@ public class PlayerControls : MonoBehaviour
  
     private float rotY = 0.0f; // rotation around the up/y axis
     private float rotX = 0.0f; // rotation around the right/x axis
+
+    [SerializeField] private Color ColorA;
+    [SerializeField] private Color ColorB;
+    [SerializeField] private LayerMask sharkLayer;
+    [SerializeField] private Material sharkShader;
+    private readonly int OutlineColorID = Shader.PropertyToID("_OutlineColor");
  
     void Start ()
     {
@@ -31,5 +37,17 @@ public class PlayerControls : MonoBehaviour
  
         Quaternion localRotation = Quaternion.Euler(rotX, rotY, 0.0f);
         transform.rotation = localRotation;
+        
+        //https://forum.unity.com/threads/how-to-raycast-from-camera-through-mouse-position.293717/
+        //Super lazy, definitely can be optimized, but cope
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); // raycast from mouse
+        if (Physics.Raycast(ray, 100,sharkLayer)) //if hit shark
+        {
+            sharkShader.SetColor(OutlineColorID, ColorB);
+        }
+        else // else col A
+        {
+            sharkShader.SetColor(OutlineColorID, ColorA);
+        }
     }
 }
