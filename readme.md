@@ -67,11 +67,6 @@ Note: This diagram has two passes because in the next part I create a second pas
 Okay so technically at this point, vertex extrusion is already happening in the water, and shadows are being handled by the shark...
 So to feel like I did something, let's implement bloom & Outlines.
 
-Speed run time
-
-Okay great, so here's what the game looks like now
-
-
 First I added an outline pass to the shark shadow shadow, then I connected that outline pass to my C# script and added some code that raycasts forward from the player position
 If we're seeing the layer w/ the shark on it, then the shark goes red. 
 ![](E.png)
@@ -82,6 +77,7 @@ Next I made a laser pointer to it's clear where the player is aiming and I appli
 Then I added bloom to the project, this will highlight bright and glowing spaces, so if you look at the water, it'll have a slight glow where there are white spots and if you look at the laser, it's not pixellated like everthing else because bloom happens after pixels
 
 The bloom shader is enormous, so it's a copy paste 1to1 w/ variables changed from the lectures.
+because honestly, it worked great from the lecture, so why change it? Especially because I technically implemented all 4 tasks (With modifications to the other ones).
 
 Because I don't really know what to say about this besides for taking a dozen screenshots, let's talk about the variables that I manipulated
 ![](G.png)
