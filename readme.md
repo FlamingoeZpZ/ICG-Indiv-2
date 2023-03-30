@@ -101,3 +101,18 @@ Here's what the final thing looks like
 https://sketchfab.com/3d-models/low-poly-shark-58eddd6fbc2448c38efd1e3df3d0f342#download <-- Shark
 
 
+## I FORGOT A SECTION (Known fact, I can't read long things) This was done at 8:30-8:50 Wednesday night.
+
+![](Cringe.png)
+Here is the tiling texture because I pretty much implemented every shader from the second half of the semester in this project.
+It's very simple, just take two textures, combine them and offset them at different speeds and directions based on time passed.
+This shader can be used to create a flat cartoony water effect, or just a really cool holographic overlay effect like in the unreal engine shooter game... Make it look like the hologram is updating
+
+I was also thinking about the project, and I now see that square waves should have used a step function... Hindsight 20/20 lol
+
+
+
+
+
+
+
